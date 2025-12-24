@@ -1,0 +1,293 @@
+/* =========================================================
+   TABLE HEADER — FINAL (STAR | NAME | NUMBERS)
+   ========================================================= */
+
+.qc-table-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+
+  display: grid;
+  grid-template-columns:
+    36px     /* ⭐ star */
+    1.4fr    /* NAME */
+    1fr      /* PRICE */
+    1fr      /* ₹ CHANGE */
+    1fr      /* % CHANGE */
+    1fr      /* MARKET CAP */
+    1fr      /* DAILY CASH */
+    1fr;     /* WEEKLY CASH */
+
+  align-items: center;
+  padding: 14px 18px;
+
+  backdrop-filter: blur(10px);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.95),
+    rgba(15, 23, 42, 0.85)
+  );
+
+  border-bottom: 1px solid var(--border-soft);
+  box-shadow:
+    inset 0 -1px 0 rgba(255,255,255,0.06),
+    0 2px 14px rgba(0,0,0,0.4);
+
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ================= HEADER CELLS ================= */
+
+.th {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ⭐ STAR header */
+.qc-table-header .th:nth-child(1) {
+  justify-content: center;
+}
+
+/* 🏷 NAME header — LEFT aligned & shifted */
+.qc-table-header .th:nth-child(2) {
+  justify-content: flex-start;
+  text-align: left;
+  padding-left: 120px; /* column shift */
+}
+
+/* 🔢 NUMERIC headers — RIGHT aligned */
+.qc-table-header .th:nth-child(n+3) {
+  justify-content: flex-end;
+}
+
+/* Sort icon */
+.th::after {
+  content: "↕";
+  width: 12px;
+  margin-left: 4px;
+  font-size: 10px;
+  opacity: 0.25;
+  transition: opacity 0.15s ease;
+}
+
+.th:hover::after {
+  opacity: 0.6;
+}
+
+.th.active {
+  color: #f8fafc;
+}
+
+.th.active.asc::after {
+  content: "↑";
+  opacity: 1;
+}
+
+.th.active.desc::after {
+  content: "↓";
+  opacity: 1;
+}
+
+/* =========================================================
+   TABLE ROWS
+   ========================================================= */
+
+.qc-row {
+  position: relative;
+  display: grid;
+  grid-template-columns:
+    36px
+    1.4fr
+    1fr
+    1fr
+    1fr
+    1fr
+    1fr
+    1fr;
+
+  align-items: center;
+  padding: 14px 18px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.015),
+    rgba(255,255,255,0)
+  );
+
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+/* Zebra */
+.qc-row:nth-child(even) {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.03),
+    rgba(255,255,255,0)
+  );
+}
+
+/* Hover */
+.qc-row:hover {
+  background: rgba(255,255,255,0.07);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+
+/* Left accent */
+.qc-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10%;
+  bottom: 10%;
+  width: 2px;
+  background: transparent;
+}
+
+.qc-row:hover::before {
+  background: var(--accent);
+}
+
+/* =========================================================
+   ROW CELLS — FINAL ALIGNMENT LOGIC
+   ========================================================= */
+
+.qc-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  padding-right: 6px;
+}
+
+/* ⭐ STAR column */
+.qc-cell.star {
+  align-items: center;
+}
+
+/* 🏷 NAME column — LEFT aligned & shifted */
+.qc-cell.name {
+  align-items: flex-start;
+  text-align: left;
+  padding-left: 120px; /* MUST match header */
+}
+
+/* 🔢 ALL numeric columns — RIGHT aligned */
+.qc-cell:not(.star):not(.name) {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* =========================================================
+   TEXT HIERARCHY
+   ========================================================= */
+
+.qc-symbol {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f1f5f9;
+  line-height: 1.2;
+}
+
+/* =========================================================
+   SECTOR / INDUSTRY TEXT — SMART WRAP (FINAL)
+   ========================================================= */
+
+.qc-sub {
+  font-size: 11px;
+  margin-top: 3px;
+  color: var(--text-muted);
+  line-height: 1.3;
+
+  /* wrapping control */
+  white-space: normal;           /* allow wrapping */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1.5;         /* max 2 lines */
+  -webkit-box-orient: vertical;
+
+
+}
+
+
+
+
+
+
+/* ===== WATCHLIST TABLE ONLY ===== */
+.qc-table-watchlist.qc-table-header,
+.qc-table-watchlist .qc-row {
+  grid-template-columns:
+    36px     /* star */
+    1.4fr    /* name */
+    0.9fr    /* date */
+    1fr      /* price */
+    1fr      /* ₹ change */
+    1fr      /* % change */
+    1fr      /* market cap */
+    1fr      /* daily cash */
+    1fr;     /* weekly cash */
+}
+/* STAR */
+.qc-cell.star {
+  align-items: center;
+}
+
+/* NAME */
+.qc-cell.name {
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* DATE (watchlist only) */
+.qc-table-watchlist .qc-cell.date {
+  align-items: center;
+  text-align: center;
+  font-size: 12px;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+/* NUMBERS */
+.qc-cell:not(.star):not(.name):not(.date) {
+  align-items: flex-end;
+  text-align: right;
+}
+.qc-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.3;
+
+  white-space: normal;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* ================= WATCHLIST DATE ALIGNMENT FIX ================= */
+
+.qc-table-watchlist .qc-cell.date {
+  align-items: center;      /* vertical centering */
+  justify-content: center;  /* horizontal centering */
+  text-align: center;
+
+  font-variant-numeric: tabular-nums; /* keeps dates visually stable */
+  white-space: nowrap;
+}
+/* =========================================================
+   WATCHLIST DATE — COMPENSATE NAME SHIFT (FINAL FIX)
+   ========================================================= */
+
+.qc-table-watchlist .qc-cell.date {
+  padding-left: 100px; /* must match .qc-cell.name padding */
+  box-sizing: border-box;
+}

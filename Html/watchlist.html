@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>QuickCharts – Watchlist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind (DEV) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Theme -->
+  <link rel="stylesheet" href="../Css/base.css">
+  <link rel="stylesheet" href="../Css/star.css">
+  <link rel="stylesheet" href="../Css/profile.css">
+  <link rel="stylesheet" href="../Css/preloader.css">
+  <link rel="stylesheet" href="../Css/table.css">
+  <link rel="stylesheet" href="../Css/preloader.css">
+</head>
+
+<body class="min-h-screen custom-scrollbar">
+
+<!-- ================= HEADER ================= -->
+<header class="container mx-auto px-4 py-5 flex justify-between items-center">
+  <div>
+    <h1 class="text-2xl font-semibold">Watchlist</h1>
+    <p class="text-slate-400 text-sm">Saved stocks</p>
+  </div>
+
+  <!-- Profile -->
+  <div id="user-area" class="hidden relative">
+    <button id="profile-btn" class="qc-profile-btn">
+      <img id="user-avatar" />
+    </button>
+
+    <div id="user-menu" class="qc-profile-menu hidden">
+      <div class="qc-profile-header">
+        <img id="menu-avatar" />
+        <div>
+          <div id="user-name" class="qc-profile-name"></div>
+          <div id="user-email" class="qc-profile-email"></div>
+        </div>
+      </div>
+
+      <div class="qc-profile-divider"></div>
+
+      <button class="qc-logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= NAV ================= -->
+<div class="container mx-auto px-4">
+  <div class="qc-topbar mb-5 flex flex-wrap gap-2 items-center">
+
+    <a href="index.html" class="filter text-sm">Home</a>
+    <a href="sector.html" class="filter text-sm">Sector</a>
+    <a href="indian.html" class="filter text-sm">India</a>
+    <a href="global.html" class="filter text-sm">Global</a>
+    <a href="institution.html" class="filter text-sm">Institution</a>
+    <a href="watchlist.html" class="filter text-sm active">Watchlist</a>
+    <a href="news.html" class="filter text-sm">News</a>
+
+    <div class="flex-1"></div>
+
+    <button
+      id="clear-watchlist"
+      class="filter text-sm text-red-400 border-red-500/30
+             hover:border-red-400 hover:bg-red-500/10">
+      Clear Watchlist
+    </button>
+  </div>
+</div>
+
+<!-- ================= TABLE ================= -->
+<main class="container mx-auto px-4 pb-10">
+
+  <div class="qc-table-header qc-table-watchlist">
+  <div class="th"></div>
+
+  <div class="th" data-key="name">Name</div>
+  <div class="th" data-key="date">Date</div>
+  <div class="th" data-key="price">Price</div>
+  <div class="th" data-key="absChange">₹ Change</div>
+  <div class="th" data-key="pctChange">% Change</div>
+  <div class="th" data-key="mcap">Market Cap</div>
+  <div class="th" data-key="dailyCash">Daily Cash</div>
+  <div class="th" data-key="weeklyCash">Weekly Cash</div>
+</div>
+
+
+  <div id="stock-grid" class="qc-table-watchlist"></div>
+</main>
+
+<!-- ================= EMPTY STATE ================= -->
+<template id="empty-watchlist">
+  <div class="text-center text-slate-400 py-20">
+    <div class="text-lg font-semibold mb-2">
+      Your watchlist is empty
+    </div>
+    <p class="text-sm">
+      Click the ⭐ icon on any stock to save it
+    </p>
+  </div>
+</template>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<script src="../Js/common.js"></script>
+<script src="../Js/dataService.js"></script>
+<script src="../Js/stockRenderer.js"></script>
+<script src="../Js/sortEngine.js"></script>
+<script src="../Js/watchlist.js"></script>
+
+
+<!-- ================= CLEAR WATCHLIST ================= -->
+<script>
+document.getElementById("clear-watchlist").onclick = () => {
+  if (!confirm("This will remove all stocks from your watchlist. Continue?"))
+    return;
+
+  Common.watchlist.clear();
+  location.reload();
+};
+</script>
+
+<!-- 🔐 AUTH -->
+<script src="../Js/auth.js"></script>
+
+</body>
+</html>

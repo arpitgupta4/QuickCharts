@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sectors – QuickCharts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind (only for utility spacing/text, optional) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Base + Sector CSS -->
+ <link rel="stylesheet" href="../Css/base.css">
+<link rel="stylesheet" href="../Css/sector-base.css">
+<link rel="stylesheet" href="../Css/profile.css">
+<link rel="stylesheet" href="../Css/preloader.css">
+
+</head>
+
+<body class="min-h-screen custom-scrollbar">
+
+<!-- ================= PRELOADER ================= -->
+<div id="app-loader" class="hide">
+  <div class="loader-card">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="container mx-auto px-4 py-5">
+  <h1 class="text-2xl font-semibold">Sector Flow</h1>
+  <p class="text-slate-400 text-sm">Capital rotation across sectors</p>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="container mx-auto px-4 pb-10">
+
+  <div class="qc-context mb-4">
+    Weekly institutional flow ranked by efficiency
+  </div>
+
+  <!-- ===== TABLE HEADER ===== -->
+  <div class="qc-table-header sector-header">
+    <div>Sector</div>
+    <div>Stocks</div>
+    <div>Market Cap</div>
+    <div>Daily Cash</div>
+    <div>Weekly Cash</div>
+    <div>Flow / MCap</div>
+  </div>
+
+  <!-- ===== TABLE BODY ===== -->
+  <div id="sector-grid" class="sector-table"></div>
+
+</main>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="../Js/common.js"></script>
+<script src="../Js/dataService.js"></script>
+<script src="../Js/sector.js"></script>
+
+</body>
+</html>

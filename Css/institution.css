@@ -1,0 +1,40 @@
+/* =========================================================
+   INSTITUTION TABLE — GRID OVERRIDE (SAFE)
+   ========================================================= */
+
+/* Header grid */
+.inst-header-row {
+  display: grid;
+  grid-template-columns:
+    36px        /* ⭐ */
+    1.4fr       /* Name */
+    1fr         /* Price */
+    1fr         /* ₹ */
+    1fr         /* % */
+    1fr         /* MCap */
+    1fr         /* Daily */
+    1fr;        /* Weekly */
+}
+
+/* Star header */
+.inst-header-row .th.star {
+  justify-content: center;
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Header text alignment */
+.inst-header-row .th:nth-child(2) {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.inst-header-row .th:nth-child(n+3) {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* Table wrapper spacing */
+.inst-table {
+  margin-top: 6px;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Market Intelligence – QuickCharts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind (dev only) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Project CSS -->
+  <link rel="stylesheet" href="../Css/base.css">
+<link rel="stylesheet" href="../Css/news.css">
+<link rel="stylesheet" href="../Css/profile.css">
+<link rel="stylesheet" href="../Css/preloader.css">
+
+</head>
+
+<body class="min-h-screen custom-scrollbar bg-[#0b0f14] text-slate-100">
+
+<!-- HEADER -->
+<header class="container mx-auto px-5 py-5 flex justify-between items-center">
+  <div>
+    <h1 class="text-3xl font-semibold">Market Intelligence</h1>
+
+    <p class="text-slate-400 text-sm mt-1">
+      Actionable market news across sectors & events
+    </p>
+
+    <!-- Dynamic Focus -->
+    <div class="mt-2 flex gap-2 items-center">
+
+      <span id="market-regime" class="news-regime font-medium"></span>
+    </div>
+  </div>
+
+  <a href="index.html" class="filter text-sm">← Back</a>
+</header>
+
+<!-- MAIN -->
+<main class="container mx-auto px-4 pb-10">
+
+  <!-- FILTER BAR -->
+<div class="news-filters">
+
+  <!-- SECTOR TABS -->
+  <div class="news-tabs">
+    <button class="tab active" data-sector="ALL">All</button>
+    <button class="tab" data-sector="BANKS">Banks</button>
+    <button class="tab" data-sector="IT">IT</button>
+    <button class="tab" data-sector="AUTO">Auto</button>
+    <button class="tab" data-sector="PHARMA">Pharma</button>
+    <button class="tab" data-sector="METAL">Metal</button>
+    <button class="tab" data-sector="GLOBAL">Global</button>
+    <button class="tab" data-sector="OTHER">Other</button>
+  </div>
+
+  <!-- SAVED -->
+  <button id="toggle-saved" class="tab">
+    Saved
+  </button>
+
+</div> 
+ <!-- NEWS LIST -->
+  <div id="news-container" class="space-y-4"></div>
+
+</main>
+
+<!-- JS -->
+<script src="../Js/common.js"></script>
+<script src="../Js/news.js"></script>
+
+</body>
+</html>

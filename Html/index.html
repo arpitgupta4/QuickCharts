@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>QuickCharts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Theme -->
+  <link rel="stylesheet" href="../Css/base.css">
+  <link rel="stylesheet" href="../Css/login.css">
+  <link rel="stylesheet" href="../Css/star.css">
+  <link rel="stylesheet" href="../Css/preloader.css">
+  <link rel="stylesheet" href="../Css/profile.css">
+   <link rel="stylesheet" href="../Css/metric.css">
+    <link rel="stylesheet" href="../Css/table.css">
+
+
+
+  <!-- Google Identity -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body class="min-h-screen custom-scrollbar">
+
+   <!-- ================= Preloader ================= -->
+<div id="app-loader" class="hide">
+  <div class="loader-card">
+    <div class="spinner"></div>
+
+  </div>
+</div>
+
+
+<!-- ================= 🔐 LOGIN SCREEN ================= -->
+<div id="login-screen"
+     class="fixed inset-0 flex items-center justify-center bg-[#0b0f1a] z-50">
+
+  <div class="login-card text-center">
+    <h2 class="text-2xl font-semibold mb-2">Welcome to QuickCharts</h2>
+    <p class="text-slate-400 mb-6">
+      Sign in to continue
+    </p>
+
+    <!-- Google Login Button -->
+    <div id="google-btn"></div>
+  </div>
+</div>
+
+<!-- ================= 🔓 APP (LOCKED BY DEFAULT) ================= -->
+<div id="app" class="hidden">
+
+  <!-- ================= HEADER ================= -->
+  <header class="container mx-auto px-4 py-5 flex justify-between items-center">
+
+    <div>
+      <h1 class="text-2xl font-semibold">QuickCharts</h1>
+      <p class="text-slate-400 text-sm">Market snapshot</p>
+    </div>
+
+    <!-- User Profile -->
+    <!-- User Profile -->
+<div id="user-area" class="hidden relative">
+  <button id="profile-btn" class="qc-profile-btn">
+    <img id="user-avatar" alt="User Avatar" />
+  </button>
+
+  <div id="user-menu" class="qc-profile-menu hidden">
+    <div class="qc-profile-header">
+      <img id="menu-avatar" />
+      <div>
+        <div id="user-name" class="qc-profile-name"></div>
+        <div id="user-email" class="qc-profile-email"></div>
+      </div>
+    </div>
+
+    <div class="qc-profile-divider"></div>
+
+    <button class="qc-logout-btn" onclick="logout()">
+      Logout
+    </button>
+  </div>
+</div>
+
+
+  </header>
+
+  <main class="container mx-auto px-4 pb-10">
+
+    <!-- ================= TOP METRICS ================= -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+
+      <div class="qc-metric">
+        <div class="label">Market Cap</div>
+        <div id="metric-marketcap" class="value">—</div>
+        <div class="metric-graph">
+          <svg viewBox="0 0 100 6" class="w-full h-2">
+            <rect x="0" y="0" width="100" height="6" rx="3"
+                  fill="rgba(255,255,255,0.08)" />
+            <rect id="marketcap-bar"
+                  x="0" y="0" width="0" height="6" rx="3"
+                  fill="#22c55e" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="qc-metric">
+        <div class="label">Advance / Decline</div>
+        <div id="metric-advdec" class="value">—</div>
+        <div class="metric-graph">
+          <svg viewBox="0 0 100 6" class="w-full h-2">
+            <rect id="adv-bar" x="0" y="0" width="50" height="6" rx="3"
+                  fill="#22c55e" />
+            <rect id="dec-bar" x="50" y="0" width="50" height="6" rx="3"
+                  fill="#ef4444" />
+          </svg>
+        </div>
+        <div id="metric-advdec-text" class="metric-footer">—</div>
+      </div>
+
+      <div class="qc-metric">
+        <div class="label">Weekly Momentum</div>
+        <div id="metric-momentum" class="value">—</div>
+        <div class="metric-graph">
+          <svg viewBox="0 0 200 60" class="w-full h-10">
+            <path d="M10 50 Q100 10 190 50"
+                  fill="none" stroke="#1f2937" stroke-width="4" />
+            <path id="momentum-curve"
+                  d="M10 50 Q100 10 190 50"
+                  fill="none" stroke="#22c55e"
+                  stroke-width="4"
+                  stroke-dasharray="240"
+                  stroke-dashoffset="240" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- ===== FEAR & GREED ===== -->
+<!-- ===== FEAR & GREED (FINAL) ===== -->
+<div class="qc-metric qc-fear-greed">
+  <div class="label">Fear & Greed</div>
+
+  <div class="metric-graph">
+    <div class="fg-wrapper">
+
+      <svg viewBox="0 0 140 80" class="fg-gauge">
+
+       <!-- Base arc -->
+<path
+  d="M20 64 A50 50 0 0 1 120 64"
+  fill="none"
+  stroke="rgba(255,255,255,0.12)"
+  stroke-width="11"
+  stroke-linecap="round"
+/>
+
+<!-- Active arc -->
+<path
+  id="fg-arc"
+  d="M20 64 A50 50 0 0 1 120 64"
+  fill="none"
+  stroke="url(#fgGradient)"
+  stroke-width="11"
+  stroke-linecap="round"
+  stroke-dasharray="157"
+  stroke-dashoffset="157"
+/>
+
+
+        <defs>
+          <linearGradient id="fgGradient" gradientUnits="userSpaceOnUse"
+                          x1="20" y1="70" x2="120" y2="70">
+            <stop offset="0%" stop-color="#ef4444"/>
+            <stop offset="55%" stop-color="#facc15"/>
+            <stop offset="100%" stop-color="#22c55e"/>
+          </linearGradient>
+        </defs>
+
+      </svg>
+
+      <!-- Centered value -->
+      <div class="fg-value">
+        <span id="fg-score">—</span>
+        <small id="fg-label">—</small>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <!-- ================= COMMAND BAR ================= -->
+    <div class="qc-topbar mb-5 flex flex-wrap gap-2 items-center">
+      <input id="search-input" class="filter text-sm w-40" placeholder="Search" />
+      <a href="sector.html" class="filter text-sm">Sector</a>
+      <a href="indian.html" class="filter text-sm">India</a>
+      <a href="global.html" class="filter text-sm">Global</a>
+      <a href="institution.html" class="filter text-sm">Institution</a>
+      <a href="watchlist.html" class="filter text-sm">Watchlist</a>
+
+      <a href="news.html" class="filter text-sm">News</a>
+    </div>
+
+   <div class="qc-table-header">
+      <div class="th"></div> <!-- ⭐ STAR COLUMN -->
+  <div class="th" data-key="name">Name</div>
+  <div class="th" data-key="price">Price</div>
+  <div class="th" data-key="absChange">₹ Change</div>
+  <div class="th" data-key="pctChange">% Change</div>
+  <div class="th" data-key="mcap">Market Cap</div>
+  <div class="th" data-key="dailyCash">Daily Cash</div>
+  <div class="th" data-key="weeklyCash">Weekly Cash</div>
+</div>
+
+
+
+    <div id="stock-grid"></div>
+  </main>
+</div>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="../Js/common.js"></script>
+<script src="../Js/dataService.js"></script>
+<script src="../Js/stockRenderer.js"></script>
+<script src="../Js/index.js"></script>
+<script src="../Js/institution.js"></script>
+
+<!-- 🔐 AUTH (MUST BE LAST) -->
+<script src="../Js/auth.js"></script>
+
+</body>
+</html>

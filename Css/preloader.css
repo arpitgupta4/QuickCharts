@@ -1,0 +1,70 @@
+
+/* =========================================================
+   GLOBAL PRELOADER
+   ========================================================= */
+
+   #app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b0f1a;
+}
+
+#app-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* =========================================================
+   PREMIUM CIRCULAR LOADER (INSTITUTIONAL)
+   ========================================================= */
+
+.spinner {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  border-top-color: #8b5cf6; /* purple accent */
+
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-text {
+  font-size: 13px;
+  color: #9ca3af;
+  letter-spacing: 0.04em;
+}
+.spinner {
+  border: 3px solid rgba(255,255,255,0.08);
+  border-top-color: #8b5cf6;
+  border-right-color: #22c55e;
+}
+.spinner {
+  animation: spin 0.9s linear infinite, pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.6;
+  }
+}
+.loader-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 96px;
+  height: 96px;
+
+  border-radius: 20px;
+}

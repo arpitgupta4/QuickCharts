@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Institutional Flow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind (layout only) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Theme -->
+  <link rel="stylesheet" href="../Css/base.css">
+  <link rel="stylesheet" href="../Css/star.css">
+  <link rel="stylesheet" href="../Css/profile.css">
+  <link rel="stylesheet" href="../Css/preloader.css">
+  <link rel="stylesheet" href="../Css/table.css">
+
+  <!-- ✅ NEW: Institution-only styles -->
+  <link rel="stylesheet" href="../Css/institution.css">
+</head>
+
+<body class="min-h-screen custom-scrollbar">
+
+<!-- ================= PRELOADER ================= -->
+<div id="app-loader" class="hide">
+  <div class="loader-card">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="container mx-auto px-4 pt-5 pb-3 inst-header">
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <div>
+      <h1 class="text-2xl font-semibold leading-tight">
+        Institutional Flow
+      </h1>
+      <p class="text-slate-400 text-sm">
+        Sector-wise & stock-wise cash flow analysis
+      </p>
+    </div>
+  </div>
+</header>
+
+<main class="container mx-auto px-4 pb-10">
+
+<!-- ================= CONTROLS ================= -->
+<div class="qc-topbar inst-controls mb-3 flex flex-wrap gap-2 items-center">
+
+  <button class="filter text-sm inst-btn active" data-mode="weeklyRatio">
+    Weekly Cash / MCap
+  </button>
+
+  <button class="filter text-sm inst-btn" data-mode="dailyRatio">
+    Daily Cash / MCap
+  </button>
+
+  <button class="filter text-sm inst-btn" data-mode="weeklyCash">
+    Absolute Weekly Cash
+  </button>
+
+  <button class="filter text-sm inst-btn" data-mode="divergence">
+    Weekly − Daily
+  </button>
+
+  <div class="ml-auto flex gap-2 inst-view-toggle">
+    <button id="view-stocks" class="filter text-sm active">Stocks</button>
+    <button id="view-sectors" class="filter text-sm">Sectors</button>
+    <a href="index.html" class="filter text-sm">← Back</a>
+  </div>
+
+</div>
+
+<!-- ================= TABLE ================= -->
+<div class="inst-table">
+
+  <!-- STOCK HEADER -->
+  <div id="stock-header" class="qc-table-header inst-header-row">
+    <div class="th star">☆</div>
+    <div class="th">Name</div>
+    <div class="th">Price</div>
+    <div class="th">₹ Change</div>
+    <div class="th">% Change</div>
+    <div class="th">Market Cap</div>
+    <div class="th">Daily Cash</div>
+    <div class="th">Weekly Cash</div>
+  </div>
+
+  <!-- SECTOR HEADER -->
+  <div id="sector-header" class="qc-table-header inst-header-row hidden">
+    <div class="th star"></div>
+    <div class="th">Sector</div>
+    <div class="th">Stocks</div>
+    <div class="th">Market Cap</div>
+    <div class="th">Daily Cash</div>
+    <div class="th">Weekly Cash</div>
+    <div class="th">WCash / MCap</div>
+  </div>
+
+  <!-- TABLE BODY -->
+  <div id="stock-grid"></div>
+
+</div>
+
+
+
+
+
+</main>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="../Js/common.js"></script>
+<script src="../Js/dataService.js"></script>
+<script src="../Js/stockRenderer.js"></script>
+
+<!-- ✅ Institution logic -->
+<script src="../Js/institution.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+/* =========================================================
+   SECTOR FLOW — INSTITUTIONAL TABLE (FINAL)
+   ========================================================= */
+
+/* ================= TABLE WRAPPER ================= */
+
+.sector-table {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* =========================================================
+   SINGLE SOURCE OF TRUTH — GRID
+   (HEADER + ROWS SHARE THIS)
+   ========================================================= */
+
+.sector-header,
+.sector-row {
+  display: grid;
+  grid-template-columns:
+    2fr     /* Sector */
+    0.9fr   /* Stocks */
+    1.8fr   /* Market Cap */
+    1fr     /* Daily Cash */
+    1fr     /* Weekly Cash */
+    1fr;    /* Flow / MCap */
+
+  align-items: center;
+  padding: 12px 16px;
+}
+
+/* =========================================================
+   HEADER (VISUAL ONLY)
+   ========================================================= */
+
+.sector-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  backdrop-filter: blur(10px);
+  background: linear-gradient(
+    180deg,
+    rgba(15,23,42,0.96),
+    rgba(15,23,42,0.86)
+  );
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    inset 0 -1px 0 rgba(255,255,255,0.06),
+    0 2px 12px rgba(0,0,0,0.45);
+}
+
+/* Header cells */
+.sector-header > div {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* First column left-aligned */
+.sector-header > div:first-child {
+  text-align: left;
+}
+
+/* =========================================================
+   ROWS
+   ========================================================= */
+
+.sector-row {
+  position: relative;
+  border-radius: 12px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.035),
+    rgba(255,255,255,0.01)
+  );
+
+  border: 1px solid rgba(255,255,255,0.06);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+/* Row cells */
+.sector-row > div {
+  text-align: right;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: #e5e7eb;
+}
+
+/* First column left-aligned */
+.sector-row > div:first-child {
+  text-align: left;
+}
+
+/* Hover */
+.sector-row:hover {
+  transform: translateY(-1px);
+  border-color: rgba(139,92,246,0.45);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+}
+
+/* Hover arrow */
+.sector-row::after {
+  content: "→";
+  position: absolute;
+  right: 12px;
+  opacity: 0;
+  color: #a78bfa;
+  transition: opacity 0.15s ease;
+}
+
+.sector-row:hover::after {
+  opacity: 1;
+}
+
+/* =========================================================
+   FLOW GRADIENTS (EVEN INTENSITY)
+   ========================================================= */
+
+.sector-row.pos {
+  background: linear-gradient(
+    90deg,
+    rgba(34,197,94,0.16),
+    rgba(34,197,94,0.06) 35%,
+    rgba(17,24,39,0.85)
+  );
+}
+
+.sector-row.neg {
+  background: linear-gradient(
+    90deg,
+    rgba(239,68,68,0.16),
+    rgba(239,68,68,0.06) 35%,
+    rgba(17,24,39,0.85)
+  );
+}
+
+/* =========================================================
+   TEXT HIERARCHY (SECTOR CELL)
+   ========================================================= */
+
+.sector-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f8fafc;
+  max-width: 95%;
+}
+
+.sector-sub {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 2px;
+  line-height: 1.2;
+  max-width: 95%;
+}
+
+.sector-ratio {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   RESPONSIVE SAFETY (OPTIONAL)
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .sector-header,
+  .sector-row {
+    grid-template-columns:
+      2fr
+      0.8fr
+      1.4fr
+      1fr
+      1fr
+      1fr;
+  }
+}

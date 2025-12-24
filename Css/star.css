@@ -1,0 +1,39 @@
+
+/* =========================================================
+   STAR COLUMN (CMC STYLE — FINAL)
+   ========================================================= */
+
+.qc-cell.star {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Empty star */
+.qc-star {
+  font-size: 18px;
+  cursor: pointer;
+  color: #9ca3af; /* neutral gray */
+
+  transition:
+    transform 0.15s ease,
+    color 0.15s ease,
+    text-shadow 0.15s ease;
+}
+
+/* Hover highlight ONLY (still empty) */
+.qc-row:hover .qc-star {
+  color: #e5e7eb;
+  transform: scale(1.1);
+}
+
+/* Filled star AFTER click */
+.qc-star.active {
+  color: #facc15;
+}
+
+/* Glow only when active */
+.qc-star.active:hover {
+  text-shadow: 0 0 10px rgba(250,204,21,0.6);
+}
+

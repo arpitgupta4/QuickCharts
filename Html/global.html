@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Global Markets – QuickCharts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+ <link rel="stylesheet" href="../Css/base.css">
+<link rel="stylesheet" href="../Css/star.css">
+<link rel="stylesheet" href="../Css/profile.css">
+<link rel="stylesheet" href="../Css/preloader.css">
+<link rel="stylesheet" href="../Css/table.css">
+<link rel="stylesheet" href="../Css/metric.css">
+
+
+</head>
+
+<body class="min-h-screen custom-scrollbar">
+
+<!-- ================= Preloader ================= -->
+<div id="app-loader" class="hide">
+  <div class="loader-card">
+    <div class="spinner"></div>
+
+  </div>
+</div>
+
+
+
+    
+
+<header class="container mx-auto px-4 py-5">
+  <h1 class="text-2xl font-semibold">Global Markets</h1>
+  <p class="text-slate-400 text-sm">Overnight & international indices</p>
+</header>
+
+<main class="container mx-auto px-4 pb-10">
+
+  <div class="qc-context mb-4">
+    Risk-on / Risk-off assessment
+  </div>
+
+  <div id="global-grid"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+  </div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="../Js/common.js"></script>
+<script src="../Js/globalDataService.js"></script>
+<script src="../Js/globalRenderer.js"></script>
+<script src="../Js/global.js"></script>
+
+</body>
+</html>

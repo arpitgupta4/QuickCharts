@@ -1,0 +1,109 @@
+
+/* =========================================================
+   METRIC GRID — SINGLE SOURCE OF TRUTH
+   ========================================================= */
+
+.qc-metric {
+  display: grid;
+  grid-template-rows:
+    auto        /* label */
+    32px        /* value */
+    56px        /* graph */
+    18px;       /* footer */
+
+  padding: 18px;
+  row-gap: 6px;
+
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)),
+    var(--bg-panel);
+
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 14px 34px rgba(0,0,0,0.35);
+}
+
+/* Label */
+.qc-metric .label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Value */
+.qc-metric .value {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  color: #f8fafc;
+}
+
+/* Graph row */
+.metric-graph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Footer */
+.metric-footer {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ================= FEAR & GREED ================= */
+
+.qc-fear-greed .metric-graph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fg-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.fg-gauge {
+  width: 100%;
+  height: 110px;
+}
+
+/* Center number */
+.fg-value {
+  position: absolute;
+  top: 160%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+
+.fg-value span {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.fg-value small {
+  font-size: 13px;
+  margin-top: 6px;
+  color: var(--text-muted);
+}
+
+#fg-arc {
+  transition: stroke-dashoffset 1.1s cubic-bezier(0.4, 0, 0.2, 1),
+              stroke 0.6s ease;
+}

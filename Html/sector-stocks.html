@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sector Stocks – QuickCharts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind (utilities only) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Base CSS -->
+  <link rel="stylesheet" href="../Css/base.css">
+<link rel="stylesheet" href="../Css/sector-base.css">
+<link rel="stylesheet" href="../Css/sector-stocks.css">
+<link rel="stylesheet" href="../Css/star.css">
+<link rel="stylesheet" href="../Css/profile.css">
+<link rel="stylesheet" href="../Css/preloader.css">
+<link rel="stylesheet" href="../Css/table.css">
+
+
+</head>
+
+<body class="min-h-screen custom-scrollbar">
+
+<!-- ================= PRELOADER ================= -->
+<div id="app-loader" class="hide">
+  <div class="loader-card">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="container mx-auto px-4 py-5 flex justify-between items-center">
+  <div>
+    <h1 id="sector-title" class="text-2xl font-semibold"></h1>
+    <p class="text-slate-400 text-sm">
+      Sub-industry leadership & participation
+    </p>
+  </div>
+
+  <a href="sector.html" class="filter text-sm">← Back</a>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="container mx-auto px-4 pb-10">
+
+  <!-- COMMAND BAR -->
+ <div class="qc-topbar mb-3 flex justify-between items-center">
+  <div class="flex gap-2 items-center">
+    <button id="industry-rank-btn" class="filter text-sm">
+      Industry Strength ↑
+    </button>
+
+    <button id="heatmap-toggle" class="filter text-sm">
+      Sub-Industry Heatmap
+    </button>
+  </div>
+</div>
+
+<!-- HEATMAP PANEL -->
+<div id="subindustry-heatmap" class="heatmap hidden"></div>
+
+
+  <!-- ================= TABLE ================= -->
+
+  <!-- HEADER -->
+<div class="qc-table-header">
+  <div class="th"></div> <!-- ⭐ star column -->
+  <div class="th" data-sort="name">Name</div>
+  <div class="th" data-sort="price">Price</div>
+  <div class="th" data-sort="change">₹ Change</div>
+  <div class="th" data-sort="pct">% Change</div>
+  <div class="th" data-sort="mcap">Market Cap</div>
+  <div class="th" data-sort="daily">Daily Cash</div>
+  <div class="th" data-sort="weekly">Weekly Cash</div>
+</div>
+
+
+  <!-- BODY -->
+  <div id="stock-grid" class="stocks-table"></div>
+
+</main>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="../Js/common.js"></script>
+<script src="../Js/dataService.js"></script>
+<script src="../Js/stockRenderer.js"></script>
+<script src="../Js/sectorStocks.js"></script>
+
+</body>
+</html>
