@@ -115,26 +115,21 @@ function logout() {
 /* ================= AUTO LOGIN ================= */
 
 (function autoLogin() {
-  let saved = localStorage.getItem("qc_user");
+  const saved = localStorage.getItem("qc_user");
 
-  // 🔓 FORCE UNLOCK IF GOOGLE FAILS (NETLIFY SAFE)
   if (!saved) {
-    const guest = {
-      name: "Guest",
-      email: "guest@quickcharts.app",
-      picture: "https://www.gravatar.com/avatar/?d=mp"
-    };
-    localStorage.setItem("qc_user", JSON.stringify(guest));
-    saved = JSON.stringify(guest);
+    lockApp();          // 🔒 force login
+    return;
   }
 
   try {
     renderUserProfile(JSON.parse(saved));
-  } catch (e) {
+  } catch {
     localStorage.removeItem("qc_user");
     lockApp();
   }
 })();
+
 
 
 /* ================= START ================= */
