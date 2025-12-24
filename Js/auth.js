@@ -115,11 +115,17 @@ function logout() {
 /* ================= AUTO LOGIN ================= */
 
 (function autoLogin() {
-  const saved = localStorage.getItem("qc_user");
+  let saved = localStorage.getItem("qc_user");
 
+  // AUTO-GUEST FOR DEPLOYED SITE
   if (!saved) {
-    lockApp();
-    return;
+    const guest = {
+      name: "Guest User",
+      email: "guest@quickcharts.app",
+      picture: "https://www.gravatar.com/avatar/?d=mp"
+    };
+    localStorage.setItem("qc_user", JSON.stringify(guest));
+    saved = JSON.stringify(guest);
   }
 
   try {
@@ -129,6 +135,7 @@ function logout() {
     lockApp();
   }
 })();
+
 
 /* ================= START ================= */
 
