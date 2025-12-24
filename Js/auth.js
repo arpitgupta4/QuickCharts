@@ -117,10 +117,10 @@ function logout() {
 (function autoLogin() {
   let saved = localStorage.getItem("qc_user");
 
-  // AUTO-GUEST FOR DEPLOYED SITE
+  // 🔓 FORCE UNLOCK IF GOOGLE FAILS (NETLIFY SAFE)
   if (!saved) {
     const guest = {
-      name: "Guest User",
+      name: "Guest",
       email: "guest@quickcharts.app",
       picture: "https://www.gravatar.com/avatar/?d=mp"
     };
@@ -130,7 +130,7 @@ function logout() {
 
   try {
     renderUserProfile(JSON.parse(saved));
-  } catch {
+  } catch (e) {
     localStorage.removeItem("qc_user");
     lockApp();
   }
