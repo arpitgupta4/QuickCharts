@@ -495,3 +495,14 @@ body::before {
     white-space: nowrap;
   }
 }
+@media (max-width: 768px) {
+  .qc-topbar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .filter {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
