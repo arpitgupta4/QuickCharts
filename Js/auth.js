@@ -10,6 +10,8 @@ const CLIENT_ID =
 const SHEET_WEB_APP_URL =
   "https://script.google.com/macros/s/AKfycbzsqGp9EMWbJVkmFIEnGAv0bMZ-GhGr7gqYdmYVQYcOYO0OQ0AGiLHGOyhTs6vLIGUw/exec";
 
+const IS_ANDROID_APP = /Android/i.test(navigator.userAgent);
+
 /* ================= APP LOCK ================= */
 
 function lockApp() {
@@ -115,10 +117,18 @@ function logout() {
 /* ================= AUTO LOGIN ================= */
 
 (function autoLogin() {
+
+  // ✅ ANDROID APP = VIEWER MODE (NO LOGIN)
+  if (IS_ANDROID_APP) {
+    unlockApp();
+    return;
+  }
+
+  // 🌐 BROWSER MODE = LOGIN REQUIRED
   const saved = localStorage.getItem("qc_user");
 
   if (!saved) {
-    lockApp();          // 🔒 force login
+    lockApp();
     return;
   }
 
@@ -129,6 +139,7 @@ function logout() {
     lockApp();
   }
 })();
+
 
 
 
