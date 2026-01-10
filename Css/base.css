@@ -457,3 +457,41 @@ body::before {
     overflow-x: auto;
   }
 }
+/* ================= MOBILE TABLE SCROLL FIX ================= */
+@media (max-width: 768px) {
+
+  /* Prevent page overflow */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Make table horizontally scrollable */
+  .qc-table-header,
+  #stock-grid {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Force minimum width so columns don’t collapse */
+  .qc-table-header {
+    min-width: 920px;
+  }
+
+  .qc-row {
+    min-width: 920px;
+  }
+
+  /* Better spacing on mobile */
+  .qc-cell {
+    padding-right: 12px;
+    font-size: 13px;
+  }
+
+  /* Keep header text readable */
+  .th {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}
