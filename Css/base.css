@@ -426,70 +426,101 @@ body::before {
     1fr;    /* weekly cash */
 
   justify-items: stretch;
-}
-/* =========================================================
-   MOBILE TABLE – FINAL CLEAN FIX (DO NOT DUPLICATE)
-   ========================================================= */
+}/* ================= MOBILE TABLE – EXCEL STYLE ================= */
 @media (max-width: 768px) {
 
-  /* Prevent page overflow */
   body {
     overflow-x: hidden;
   }
 
-  /* Top buttons wrap cleanly */
-  .qc-topbar {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .filter {
-    flex: 1 1 auto;
-    text-align: center;
-  }
-
-  /* ONE horizontal scroll container */
+  /* Horizontal scroll wrapper */
   .qc-table-scroll {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Header + rows MUST share same grid */
+  /* 🔑 SHARED GRID (HEADER + ROWS) */
   .qc-table-header,
   .qc-row {
     display: grid;
     grid-template-columns:
-      44px      /* ⭐ star */
-      160px     /* name */
-      110px     /* price */
-      120px     /* ₹ change */
-      110px     /* % change */
-      140px     /* mcap */
-      130px     /* daily cash */
-      140px;    /* weekly cash */
+      32px      /* ⭐ star (tight) */
+      140px     /* name */
+      96px      /* price */
+      104px     /* ₹ change */
+      96px      /* % change */
+      120px     /* mcap */
+      120px     /* daily cash */
+      120px;    /* weekly cash */
 
-    min-width: 920px;
+    min-width: 828px;
   }
 
-  /* Prevent text wrapping */
+  /* ⭐ STAR COLUMN — CENTERED, NO GAP */
+  .qc-table-header .th:first-child,
+  .qc-row .qc-cell:first-child {
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  /* NAME COLUMN — LEFT */
+  .qc-table-header .th:nth-child(2),
+  .qc-row .qc-cell:nth-child(2) {
+    justify-content: flex-start;
+  }
+
+  /* NUMERIC COLUMNS — RIGHT (EXCEL STYLE) */
+  .qc-table-header .th:not(:nth-child(1)):not(:nth-child(2)),
+  .qc-row .qc-cell:not(:nth-child(1)):not(:nth-child(2)) {
+    justify-content: flex-end;
+  }
+
+  /* Prevent wrapping */
   .th,
   .qc-cell {
     white-space: nowrap;
   }
 
-  /* Font tuning for mobile */
+  /* Font tuning */
   .th {
     font-size: 11px;
   }
 
   .qc-cell {
     font-size: 13px;
-    padding-right: 12px;
+    padding-right: 10px;
   }
 
-  /* IMPORTANT: rows must NOT scroll independently */
+  /* IMPORTANT */
   #stock-grid {
     overflow: visible;
+  }
+}
+/* ================= MOBILE TOP BAR FIX ================= */
+@media (max-width: 768px) {
+
+  .qc-topbar {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .qc-topbar .filter {
+    flex: 1 1 auto;
+    min-width: 88px;
+    padding: 6px 10px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  /* Sector / page headers */
+  .container > header,
+  header.container {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  header h1 {
+    font-size: 20px;
   }
 }
