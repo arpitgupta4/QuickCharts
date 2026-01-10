@@ -427,37 +427,9 @@ body::before {
 
   justify-items: stretch;
 }
-/* ================= MOBILE FIX ================= */
-@media (max-width: 768px) {
-
-  body {
-    overflow-x: hidden;
-  }
-
-  .container,
-  main,
-  header {
-    max-width: 100% !important;
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-  }
-
-  /* Metrics cards stack nicely */
-  .qc-metric {
-    width: 100%;
-  }
-
-  /* Table becomes scrollable instead of breaking */
-  .qc-table-header,
-  .qc-row {
-    grid-template-columns: 160px repeat(6, minmax(120px, 1fr));
-  }
-
-  #stock-grid {
-    overflow-x: auto;
-  }
-}
-/* ================= MOBILE TABLE SCROLL FIX ================= */
+/* =========================================================
+   MOBILE TABLE – FINAL CLEAN FIX (DO NOT DUPLICATE)
+   ========================================================= */
 @media (max-width: 768px) {
 
   /* Prevent page overflow */
@@ -465,37 +437,7 @@ body::before {
     overflow-x: hidden;
   }
 
-  /* Make table horizontally scrollable */
-  .qc-table-header,
-  #stock-grid {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Force minimum width so columns don’t collapse */
-  .qc-table-header {
-    min-width: 920px;
-  }
-
-  .qc-row {
-    min-width: 920px;
-  }
-
-  /* Better spacing on mobile */
-  .qc-cell {
-    padding-right: 12px;
-    font-size: 13px;
-  }
-
-  /* Keep header text readable */
-  .th {
-    font-size: 11px;
-    white-space: nowrap;
-  }
-}
-@media (max-width: 768px) {
+  /* Top buttons wrap cleanly */
   .qc-topbar {
     flex-wrap: wrap;
     gap: 8px;
@@ -504,5 +446,50 @@ body::before {
   .filter {
     flex: 1 1 auto;
     text-align: center;
+  }
+
+  /* ONE horizontal scroll container */
+  .qc-table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Header + rows MUST share same grid */
+  .qc-table-header,
+  .qc-row {
+    display: grid;
+    grid-template-columns:
+      44px      /* ⭐ star */
+      160px     /* name */
+      110px     /* price */
+      120px     /* ₹ change */
+      110px     /* % change */
+      140px     /* mcap */
+      130px     /* daily cash */
+      140px;    /* weekly cash */
+
+    min-width: 920px;
+  }
+
+  /* Prevent text wrapping */
+  .th,
+  .qc-cell {
+    white-space: nowrap;
+  }
+
+  /* Font tuning for mobile */
+  .th {
+    font-size: 11px;
+  }
+
+  .qc-cell {
+    font-size: 13px;
+    padding-right: 12px;
+  }
+
+  /* IMPORTANT: rows must NOT scroll independently */
+  #stock-grid {
+    overflow: visible;
   }
 }
